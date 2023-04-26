@@ -7,15 +7,14 @@ from azure.iot.hub import IoTHubRegistryManager
 CONNECTION_STRING = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
 DEVICE_ID = os.getenv("DEVICE_ID")
 
+
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     try:
-        # Get message from request
         req_body = req.get_json()
         message = req_body.get('message')
 
-        # Send message to target device
         registry_manager = IoTHubRegistryManager(CONNECTION_STRING)
         registry_manager.send_c2d_message(DEVICE_ID, message)
 
