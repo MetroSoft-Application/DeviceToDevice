@@ -5,7 +5,7 @@ import json
 from azure.iot.hub import IoTHubRegistryManager
 
 CONNECTION_STRING = os.getenv("IOTHUB_DEVICE_CONNECTION_STRING")
-DEVICE_ID = "OrangePi1"
+DEVICE_ID = os.getenv("DEVICE_ID")
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
